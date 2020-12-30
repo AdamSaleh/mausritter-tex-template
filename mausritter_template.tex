@@ -10,13 +10,18 @@
 \usepackage{stfloats}
 \usepackage[table]{xcolor}
 \usepackage{tikz}
-\usepackage{sectsty}
-\usepackage[sfdefault,condensed]{cabin}
-\usepackage[T1]{fontenc}
-% \setmainfont{QTBeckman}
+%\usepackage{sectsty}
+%\usepackage[sfdefault,condensed]{cabin}
+\usepackage{fontspec}
+\usetikzlibrary{shapes}
+\usepackage{titlesec}
+%\usepackage[T1]{fontenc}
+\setmainfont{Interstate Condensed}
+\newfontfamily\sectionfont{Brokenscript-BoldCond}
+\titleformat*{\section}{\Large\bfseries\sectionfont}
+\titleformat*{\subsection}{\large\bfseries\sectionfont}
+\titleformat*{\subsubsection}{\sectionfont}
 \usetikzlibrary{mindmap,trees,shadows,decorations.pathmorphing}
-
-
 
 \MakeShortVerb{|}
 
@@ -26,8 +31,7 @@
   breaklines=true,
 }
 
-\title{The Final Exam \\
-\large at school for enterprising henchmen }
+\title{Mausritter tex template}
 \author{Adam Saleh}
 \date{2020/04/21}
 
@@ -46,9 +50,9 @@ Your mouse has three attributes. These measure their
 basic strengths and weaknesses.
 
 \begin{itemize}
-  \item \textbf{STR}
-  \item \textbf{DEX}
-  \item \textbf{WIL}
+  \item \textbf{STR}: physical disposition
+  \item \textbf{DEX}: speed and agility
+  \item \textbf{WIL}: strenght of will and charisma
 \end{itemize}
 
 \subsection{HP, pips and background}
@@ -65,5 +69,20 @@ d6 & Sign & Disposition \\
 6 & AD & AND   \\
 \end{tabular}
 }
+
+\begin{tikzpicture} [hexa/.style= {shape=regular polygon,regular polygon sides=6,minimum size=1cm, draw,inner sep=0,anchor=south,fill=white!85!black,rotate=30}]
+\foreach \j in {0,...,5}{%
+\pgfmathsetmacro\end{5+\j}
+  \foreach \i in {0,...,\end}{%
+  \node[hexa] (h\i;\j) at ({(\i-\j/2)*sin(60)},{\j*0.75}) {};}  }
+\foreach \j in {0,...,2}{%
+  \pgfmathsetmacro\end{5-\j}
+  \foreach \i in {0,...,\end}{%
+  \pgfmathtruncatemacro\k{\j+5}
+  \node[hexa] (h\i;\k) at ({(\i+\j/2-2)*sin(60)},{4.5+\j*0.75}) {};}  }
+
+%  \foreach \k in {0,...,10}  {\node [circle,red,minimum size=1cm] at (h3;\k) {3;\k};}
+%   \foreach \k in {0,...,10}  {\node [circle,blue,minimum size=1cm] at (h1;\k) {1;\k};}
+\end{tikzpicture}
 
 \end{document}
